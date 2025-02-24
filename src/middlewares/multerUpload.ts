@@ -7,13 +7,15 @@ export const multerUpload = multer({
     destination: "uploads/",
     filename: (req, file, cb) => {
       const fileExtention = extname(file.originalname);
-      const fileName = file.originalname.split(fileExtention)[0];
+      const fileName = encodeURIComponent(
+        file.originalname.split(fileExtention)[0]
+      );
       cb(null, `${fileName}-${Date.now()}${fileExtention}`);
     },
   }),
   fileFilter: (rep, file, cb) => {
     console.log(file);
-    if (MIMETYPES.includes(file.mimetype)) {
+    if (MIMETYPES.some((filetype) => filetype === file.mimetype)) {
       return cb(null, true);
     } else {
       return cb(
