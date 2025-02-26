@@ -57,7 +57,7 @@ const createPostsController = async (
       postImageDescription,
     } = req.body;
 
-    const imageUrl = `/public/${req.file?.fieldname}`;
+    const imageUrl = `/public/${req.file?.filename}`;
 
     const postToSave = {
       title,

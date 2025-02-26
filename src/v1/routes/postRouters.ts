@@ -25,7 +25,6 @@ v1PostRouter.get(
 v1PostRouter.post(
   "/",
   multerUpload.single("image"),
-
   schemaValition(CreatePostSchema),
   createPostsController
 );
