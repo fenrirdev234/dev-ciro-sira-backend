@@ -6,12 +6,12 @@ import {
   getOnePostsController,
 } from "../../controllers/postController";
 import { schemaValition } from "../../middlewares/schemaValidator";
+
 import {
   CreatePostSchema,
   GetAllPostSchema,
   GetOnePostSchema,
 } from "../../schemas/postSchema";
-
 export const v1PostRouter = Router();
 
 v1PostRouter.get("/", schemaValition(GetAllPostSchema), getAllPostsController);
@@ -24,7 +24,7 @@ v1PostRouter.get(
 
 v1PostRouter.post(
   "/",
-  schemaValition(CreatePostSchema),
   multerUpload.single("image"),
+  schemaValition(CreatePostSchema),
   createPostsController
 );
