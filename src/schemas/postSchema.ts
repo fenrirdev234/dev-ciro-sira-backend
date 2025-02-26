@@ -35,12 +35,10 @@ export const postSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  category: [
-    {
-      type: String,
-      required: true,
-    },
-  ],
+  category: {
+    type: String,
+    required: true,
+  },
   postId: {
     type: mongoose.Schema.Types.ObjectId,
     default: new mongoose.mongo.ObjectId(),
@@ -95,18 +93,15 @@ export const CreatePostSchema = z.object({
       .nonempty()
       .min(3, "Title must be at least 3 characters long")
       .max(128, "Title must be less than 128 characters long"),
-    author: z.object({
-      name: z
-        .string()
-        .nonempty()
-        .min(3, "Author name must be at least 3 characters long")
-        .max(128, "Author name must be less than 128 characters long"),
-      photo: z.object({
-        url: z.string().url().nonempty(),
-        alt: z.string().nonempty(),
-      }),
-    }),
-    category: z.array(categoryTypesSchema),
+
+    authorName: z
+      .string()
+      .nonempty()
+      .min(3, "Author name must be at least 3 characters long")
+      .max(128, "Author name must be less than 128 characters long"),
+    authorPhotoUrl: z.string().url().nonempty(),
+    authorPhotoAlt: z.string().nonempty(),
+    category: z.string().nonempty(),
     postImageDescription: z.string().nonempty("Image description is required"),
 
     readingTime: z.string().nonempty("Reading time is required"),
@@ -117,10 +112,7 @@ export type PostCollectionType = InferSchemaType<typeof postSchema>;
 export type GetAllPostQueryType = z.infer<typeof GetAllPostSchema>["query"];
 export type GetOnePostParamsType = z.infer<typeof GetOnePostSchema>["params"];
 export type CreatePostBodyType = z.infer<typeof CreatePostSchema>["body"];
-export type CreatePostServiceType = Omit<
-  CreatePostBodyType,
-  "postImageDescription"
-> & {
+export type CreatePostServiceType = {
   author: {
     name: string;
     photo: {

@@ -1,4 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
+
 import {
   CreatePostBodyType,
   GetAllPostQueryType,
@@ -47,16 +48,25 @@ const createPostsController = async (
   next: NextFunction
 ) => {
   try {
-    const { title, author, category, readingTime, postImageDescription } =
-      req.body;
+    const {
+      title,
+      authorPhotoUrl,
+      authorName,
+      category,
+      readingTime,
+      postImageDescription,
+    } = req.body;
 
     const imageUrl = `/public/${req.file?.fieldname}`;
 
     const postToSave = {
       title,
-      author,
-      category,
+      author: {
+        name: authorName,
+        photo: { url: authorPhotoUrl, alt: authorName },
+      },
       readingTime,
+      category,
       postImage: {
         url: imageUrl,
         alt: postImageDescription,
