@@ -99,7 +99,7 @@ export const CreatePostSchema = z.object({
       .nonempty()
       .min(3, "Author name must be at least 3 characters long")
       .max(128, "Author name must be less than 128 characters long"),
-    authorPhotoUrl: z.string().url().nonempty(),
+    authorPhotoUrl: z.string().nonempty(),
     authorPhotoAlt: z.string().nonempty(),
     category: z.string().nonempty(),
     postImageDescription: z.string().nonempty("Image description is required"),
