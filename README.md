@@ -84,7 +84,6 @@ dev-ciro-sira-backend/
 
 This project uses the following stack:
 
-- Library: [React](https://reactjs.org/)
 - Framework: [Express.js](expressjs.com)
 - Database: [Mongodb](expressjs.com)
 - ODM: [Mongoose](expressjs.com)
