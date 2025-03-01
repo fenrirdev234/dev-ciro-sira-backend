@@ -11,8 +11,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "services": "docker compose up -d",
-    "services:stop": "docker compose down",
-    "test": "cross-env NODE_ENV=test node --test"
+    "services:stop": "docker compose down"
   },
   "keywords": [],
   "author": "",

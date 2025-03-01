@@ -2,7 +2,7 @@ import { PostModel } from "../models/postModel";
 import { CreatePostServiceType } from "../schemas/postSchema";
 
 const options = {
-  sort: { createdAt: -1 },
+  /*  sort: { createdAt: -1 }, */
 };
 
 export const getAllPostService = async (limit: number, page: number) => {

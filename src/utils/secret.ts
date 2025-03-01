@@ -18,6 +18,7 @@ const envSchema = z.object({
   MONGO_DATABASE: z.string().min(1, "MONGO_HOSTNAME is required"),
   MONGO_DATABASE_TEST: z.string().min(1, "MONGO_DATABASE_TEST is required"),
   MONGO_NAMEAPP: z.string().min(1, "MONGO_NAMEAPP is required"),
+  BACKEND_HOST: z.string().min(1, "BACKEND_HOST is required"),
 });
 
 const { success, error, data } = envSchema.safeParse(process.env);
@@ -35,6 +36,7 @@ const {
   MONGO_HOSTNAME,
   MONGO_DATABASE_TEST,
   MONGO_NAMEAPP,
+  BACKEND_HOST,
 } = data;
 
 const MONGO_DATABASE =
@@ -48,4 +50,5 @@ export {
   MONGO_HOSTNAME,
   MONGO_NAMEAPP,
   MONGO_DATABASE,
+  BACKEND_HOST,
 };
