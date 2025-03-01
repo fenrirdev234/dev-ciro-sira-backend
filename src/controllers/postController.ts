@@ -1,3 +1,4 @@
+import fs from "fs";
 import type { NextFunction, Request, Response } from "express";
 
 import {
@@ -11,6 +12,11 @@ import {
   getOnePostService,
 } from "../services/PostServices";
 import { BACKEND_HOST } from "../utils/secret";
+import sharp from "sharp";
+import { resizeImage } from "../lib/sharp/resizeImage";
+import { createWebP } from "../lib/sharp/createWedp";
+import { createBlurHash } from "../lib/sharp/createBlurHash";
+import { imageName } from "../utils/imageName";
 
 const getAllPostsController = async (
   req: Request<unknown, unknown, unknown, GetAllPostQueryType>,
@@ -59,7 +65,18 @@ const createPostsController = async (
       postImageDescription,
     } = req.body;
 
-    const imageUrl = `/public/${req.file?.filename}`;
+    const image = req.file;
+    const processedImage = sharp(image?.buffer);
+
+    const webpImage = await createWebP(processedImage);
+
+    const blurHastData = await createBlurHash(webpImage);
+
+    const newName = imageName(image!.originalname, ".webp");
+
+    const imageUrl = `/public/${newName}`;
+
+    fs.writeFileSync(`uploads/${newName}`, imageUrl);
 
     const postToSave = {
       title,
@@ -72,6 +89,7 @@ const createPostsController = async (
       postImage: {
         url: `${BACKEND_HOST}${imageUrl}`,
         alt: postImageDescription,
+        blurHash: blurHastData,
       },
     };
 
