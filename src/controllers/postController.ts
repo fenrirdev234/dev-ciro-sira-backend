@@ -10,6 +10,7 @@ import {
   getAllPostService,
   getOnePostService,
 } from "../services/PostServices";
+import { BACKEND_HOST } from "../utils/secret";
 
 const getAllPostsController = async (
   req: Request<unknown, unknown, unknown, GetAllPostQueryType>,
@@ -35,6 +36,7 @@ const getOnePostsController = async (
 ) => {
   try {
     const postId = req.params.postId;
+
     const post = await getOnePostService(postId);
     res.status(200).json(post);
   } catch (error) {
@@ -68,7 +70,7 @@ const createPostsController = async (
       readingTime,
       category,
       postImage: {
-        url: imageUrl,
+        url: `${BACKEND_HOST}${imageUrl}`,
         alt: postImageDescription,
       },
     };
