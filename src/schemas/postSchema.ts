@@ -53,6 +53,20 @@ export const postSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
+    blurHash: {
+      hash: {
+        type: String,
+        required: true,
+      },
+      height: {
+        type: Number,
+        required: true,
+      },
+      width: {
+        type: Number,
+        required: true,
+      },
+    },
   },
 });
 
@@ -113,11 +127,20 @@ export type GetAllPostQueryType = z.infer<typeof GetAllPostSchema>["query"];
 export type GetOnePostParamsType = z.infer<typeof GetOnePostSchema>["params"];
 export type CreatePostBodyType = z.infer<typeof CreatePostSchema>["body"];
 export type CreatePostServiceType = {
+  title: string;
   author: {
     name: string;
-    photo: {
-      url: string;
-      alt: string;
+    photo: { url: string; alt: string };
+  };
+  readingTime: string;
+  category: string;
+  postImage: {
+    url: string;
+    alt: string;
+    blurHash: {
+      hash: string;
+      height: number;
+      width: number;
     };
   };
 };
