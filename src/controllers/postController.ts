@@ -76,7 +76,7 @@ const createPostsController = async (
 
     const imageUrl = `/public/${newName}`;
 
-    fs.writeFileSync(`uploads/${newName}`, imageUrl);
+    fs.writeFileSync(`uploads/${newName}`, webpImage);
 
     const postToSave = {
       title,
