@@ -13,7 +13,7 @@ import {
 } from "../services/PostServices";
 import { BACKEND_HOST } from "../utils/secret";
 import sharp from "sharp";
-import { resizeImage } from "../lib/sharp/resizeImage";
+
 import { createWebP } from "../lib/sharp/createWedp";
 import { createBlurHash } from "../lib/sharp/createBlurHash";
 import { imageName } from "../utils/imageName";
