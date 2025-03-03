@@ -52,6 +52,8 @@ The environment variables are located in the `.env` file. The following environm
 - `MONGO_NAMEAPP`: Mongo Atlas name app
 - `MONGO_DATABASE`: Mongo database
 - `MONGO_DATABASE_TEST`: Mongo testing database
+- `BACKEND_HOST`:Backend host
+
 
 ## Project Structure
 
@@ -82,7 +84,6 @@ dev-ciro-sira-backend/
 
 This project uses the following stack:
 
-- Library: [React](https://reactjs.org/)
 - Framework: [Express.js](expressjs.com)
 - Database: [Mongodb](expressjs.com)
 - ODM: [Mongoose](expressjs.com)
