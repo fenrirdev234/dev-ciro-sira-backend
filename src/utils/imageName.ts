@@ -6,7 +6,7 @@ export const imageName = (
 ) => {
   const fileExtention = extname(originalName);
   const fileName = encodeURIComponent(
-    originalName.split(fileExtention)[0].trim()
+    originalName.split(fileExtention)[0].split(" ").join("")
   );
   return `${fileName}-${Date.now()}${newExtention}`;
 };
