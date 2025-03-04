@@ -1,6 +1,5 @@
-import fs from "fs";
 import type { NextFunction, Request, Response } from "express";
-
+import { v2 as cloudinary } from "cloudinary";
 import {
   CreatePostBodyType,
   GetAllPostQueryType,
@@ -11,12 +10,11 @@ import {
   getAllPostService,
   getOnePostService,
 } from "../services/PostServices";
-import { BACKEND_HOST } from "../utils/secret";
+
 import sharp from "sharp";
 
 import { createWebP } from "../lib/sharp/createWedp";
 import { createBlurHash } from "../lib/sharp/createBlurHash";
-import { imageName } from "../utils/imageName";
 
 const getAllPostsController = async (
   req: Request<unknown, unknown, unknown, GetAllPostQueryType>,
@@ -66,17 +64,24 @@ const createPostsController = async (
     } = req.body;
 
     const image = req.file;
-    const processedImage = sharp(image?.buffer);
+    /*  const processedImage = sharp(image?.buffer);
 
     const webpImage = await createWebP(processedImage);
 
     const blurHastData = await createBlurHash(webpImage);
+ */
+    /*   const newName = imageName(image!.originalname, ".webp"); */
 
-    const newName = imageName(image!.originalname, ".webp");
-
-    const imageUrl = `/public/${newName}`;
-
-    fs.writeFileSync(`uploads/${newName}`, webpImage);
+    const cloudinaryResponse: any = await new Promise((resolve, reject) => {
+      cloudinary.uploader
+        .upload_stream({ format: "webp" }, (err, result) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(result);
+        })
+        .end(image?.buffer);
+    });
 
     const postToSave = {
       title,
@@ -87,9 +92,9 @@ const createPostsController = async (
       readingTime,
       category,
       postImage: {
-        url: `${BACKEND_HOST}${imageUrl}`,
+        url: cloudinaryResponse.secure_url,
         alt: postImageDescription,
-        blurHash: blurHastData,
+        /*   blurHash: blurHastData, */
       },
     };
 
