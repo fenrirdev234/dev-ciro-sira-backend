@@ -84,6 +84,7 @@ export const GetAllPostSchema = z.object({
   query: z.object({
     limit: z.string().nonempty().optional(),
     page: z.string().nonempty().optional(),
+    isDesc: z.string().nonempty().optional(),
   }),
 });
 

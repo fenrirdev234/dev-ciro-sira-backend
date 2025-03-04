@@ -5,8 +5,15 @@ const options = {
   /*  sort: { createdAt: -1 }, */
 };
 
-export const getAllPostService = async (limit: number, page: number) => {
-  const response = await PostModel.paginate({}, { limit, page, ...options });
+export const getAllPostService = async (
+  limit: number,
+  page: number,
+  isDesc: boolean = false
+) => {
+  const response = await PostModel.paginate(
+    {},
+    { limit, page, sort: { createdAt: isDesc ? "desc" : "asc" }, ...options }
+  );
 
   return response;
 };
