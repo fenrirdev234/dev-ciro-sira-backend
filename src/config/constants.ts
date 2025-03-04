@@ -1,4 +1,4 @@
-const FIELDSIZE = 4000000;
+const FIELDSIZE = 10000000;
 const MIMETYPES = [
   "image/png",
   "image/jpeg",
