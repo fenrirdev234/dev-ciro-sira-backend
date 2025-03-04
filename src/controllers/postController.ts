@@ -22,10 +22,13 @@ const getAllPostsController = async (
   next: NextFunction
 ) => {
   try {
-    const { limit, page } = req.query;
+    const { limit, page, isDesc } = req.query;
+
+    const isDescParse = isDesc ? JSON.parse(isDesc) : false;
+    const isDescBool = typeof isDescParse === "boolean" ? isDescParse : false;
     const limitParse = parseInt(limit ?? "9", 10) || 9;
     const pageParse = parseInt(page ?? "1", 10) || 1;
-    const post = await getAllPostService(limitParse, pageParse);
+    const post = await getAllPostService(limitParse, pageParse, isDescBool);
 
     res.status(200).json(post);
   } catch (error) {
