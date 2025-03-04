@@ -52,8 +52,9 @@ The environment variables are located in the `.env` file. The following environm
 - `MONGO_NAMEAPP`: Mongo Atlas name app
 - `MONGO_DATABASE`: Mongo database
 - `MONGO_DATABASE_TEST`: Mongo testing database
-- `BACKEND_HOST`:Backend host
-
+- `CLOUDINARY_CLOUD_NAME`: Cloudinary name
+- `CLOUDINARY_API_KEY`: Cloudinary api key
+- `CLOUDINARY_API_SECRET`: Cloudinary napi secret
 
 ## Project Structure
 

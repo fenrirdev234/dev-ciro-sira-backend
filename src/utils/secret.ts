@@ -18,7 +18,9 @@ const envSchema = z.object({
   MONGO_DATABASE: z.string().min(1, "MONGO_HOSTNAME is required"),
   MONGO_DATABASE_TEST: z.string().min(1, "MONGO_DATABASE_TEST is required"),
   MONGO_NAMEAPP: z.string().min(1, "MONGO_NAMEAPP is required"),
-  BACKEND_HOST: z.string().min(1, "BACKEND_HOST is required"),
+  CLOUDINARY_CLOUD_NAME: z.string().min(1, "CLOUDINARY_CLOUD_NAME is required"),
+  CLOUDINARY_API_KEY: z.string().min(1, "CLOUDINARY_API_KEY is required"),
+  CLOUDINARY_API_SECRET: z.string().min(1, "CLOUDINARY_API_SECRET is required"),
 });
 
 const { success, error, data } = envSchema.safeParse(process.env);
@@ -36,7 +38,10 @@ const {
   MONGO_HOSTNAME,
   MONGO_DATABASE_TEST,
   MONGO_NAMEAPP,
-  BACKEND_HOST,
+
+  CLOUDINARY_CLOUD_NAME,
+  CLOUDINARY_API_KEY,
+  CLOUDINARY_API_SECRET,
 } = data;
 
 const MONGO_DATABASE =
@@ -50,5 +55,7 @@ export {
   MONGO_HOSTNAME,
   MONGO_NAMEAPP,
   MONGO_DATABASE,
-  BACKEND_HOST,
+  CLOUDINARY_CLOUD_NAME,
+  CLOUDINARY_API_KEY,
+  CLOUDINARY_API_SECRET,
 };

@@ -53,7 +53,7 @@ export const postSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-    blurHash: {
+    /*   blurHash: {
       hash: {
         type: String,
         required: true,
@@ -66,7 +66,7 @@ export const postSchema = new mongoose.Schema({
         type: Number,
         required: true,
       },
-    },
+    }, */
   },
 });
 
@@ -137,10 +137,10 @@ export type CreatePostServiceType = {
   postImage: {
     url: string;
     alt: string;
-    blurHash: {
+    /*  blurHash: {
       hash: string;
       height: number;
       width: number;
-    };
+    }; */
   };
 };
