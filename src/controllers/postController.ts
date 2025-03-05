@@ -77,13 +77,27 @@ const createPostsController = async (
 
     const cloudinaryResponse: any = await new Promise((resolve, reject) => {
       cloudinary.uploader
-        .upload_stream({ format: "webp" }, (err, result) => {
-          if (err) {
-            reject(err);
+        .upload_stream(
+          {
+            format: "webp",
+          },
+          (err, result) => {
+            if (err) {
+              reject(err);
+            }
+            resolve(result);
           }
-          resolve(result);
-        })
+        )
         .end(image?.buffer);
+    });
+
+    const cloudinaryUrl = cloudinary.url(cloudinaryResponse.public_id, {
+      transformation: [
+        {
+          fetch_format: "webp",
+          raw_transformation: "c_fit,h_750,w_750",
+        },
+      ],
     });
 
     const postToSave = {
@@ -95,7 +109,7 @@ const createPostsController = async (
       readingTime,
       category,
       postImage: {
-        url: cloudinaryResponse.secure_url,
+        url: cloudinaryUrl,
         alt: postImageDescription,
         /*   blurHash: blurHastData, */
       },
