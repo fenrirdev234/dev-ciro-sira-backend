@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { PostModel } from "../models/postModel";
 import { CreatePostServiceType } from "../schemas/postSchema";
 
@@ -24,6 +25,9 @@ export const getOnePostService = async (postId: string) => {
   return response;
 };
 export const createPostService = async (newPost: CreatePostServiceType) => {
-  const response = await PostModel.create(newPost);
+  const response = await PostModel.create({
+    ...newPost,
+    postId: new mongoose.Types.ObjectId(),
+  });
   return response;
 };

@@ -41,7 +41,7 @@ export const postSchema = new mongoose.Schema({
   },
   postId: {
     type: mongoose.Schema.Types.ObjectId,
-    default: new mongoose.mongo.ObjectId(),
+
     required: true,
   },
   postImage: {
