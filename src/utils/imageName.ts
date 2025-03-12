@@ -5,8 +5,10 @@ export const imageName = (
   newExtention: ".webp" | ".avif"
 ) => {
   const fileExtention = extname(originalName);
-  const fileName = encodeURIComponent(
-    originalName.split(fileExtention)[0].split(" ").join("")
-  );
+  const deleteWhiteSpace = originalName
+    .split(fileExtention)[0]
+    .split(" ")
+    .join("");
+  const fileName = encodeURIComponent(deleteWhiteSpace);
   return `${fileName}-${Date.now()}${newExtention}`;
 };

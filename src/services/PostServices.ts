@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+
 import { PostModel } from "../models/postModel";
 import { CreatePostServiceType } from "../schemas/postSchema";
 

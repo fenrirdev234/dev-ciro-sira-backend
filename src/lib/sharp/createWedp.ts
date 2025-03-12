@@ -1,4 +1,5 @@
-import sharp, { Sharp } from "sharp";
+import { Sharp } from "sharp";
+
 import { resizeImage } from "./resizeImage";
 
 export const createWebP = async (sharpImage: Sharp) => {

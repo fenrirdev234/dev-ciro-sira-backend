@@ -1,8 +1,8 @@
 import multer from "multer";
-import { FIELDSIZE, MIMETYPES } from "../config/constants";
-import { extname } from "path";
 
-const diskStorage = multer.diskStorage({
+import { FIELDSIZE, MIMETYPES } from "../config/constants";
+
+/* const diskStorage = multer.diskStorage({
   destination: "uploads/",
   filename: (req, file, cb) => {
     const fileExtention = extname(file.originalname);
@@ -11,7 +11,7 @@ const diskStorage = multer.diskStorage({
     );
     cb(null, `${fileName}-${Date.now()}${fileExtention}`);
   },
-});
+}); */
 
 const memoryStorage = multer.memoryStorage();
 

@@ -1,5 +1,6 @@
-import type { NextFunction, Request, Response } from "express";
 import { v2 as cloudinary } from "cloudinary";
+import type { NextFunction, Request, Response } from "express";
+
 import {
   CreatePostBodyType,
   GetAllPostQueryType,
@@ -10,11 +11,6 @@ import {
   getAllPostService,
   getOnePostService,
 } from "../services/PostServices";
-
-import sharp from "sharp";
-
-import { createWebP } from "../lib/sharp/createWedp";
-import { createBlurHash } from "../lib/sharp/createBlurHash";
 
 const getAllPostsController = async (
   req: Request<unknown, unknown, unknown, GetAllPostQueryType>,
@@ -122,4 +118,4 @@ const createPostsController = async (
   }
 };
 
-export { getAllPostsController, getOnePostsController, createPostsController };
+export { createPostsController, getAllPostsController, getOnePostsController };

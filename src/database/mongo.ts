@@ -1,10 +1,11 @@
 import { connect } from "mongoose";
+
 import {
   MONGO_DATABASE,
   MONGO_HOSTNAME,
+  MONGO_NAMEAPP,
   MONGO_PASSWORD,
   MONGO_USER,
-  MONGO_NAMEAPP,
   NODE_ENV,
 } from "../utils/secret";
 
@@ -13,8 +14,8 @@ const MONGO_URI =
     ? `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}/?retryWrites=true&w=majority&appName=${MONGO_NAMEAPP}`
     : "mongodb://localhost:27018/test-environment?directConnection=true";
 
-const dbInit = async () => {
-  await connect(MONGO_URI, {
+const dbInit =  () => {
+ connect(MONGO_URI, {
     dbName: MONGO_DATABASE,
   })
     .then(() => {
