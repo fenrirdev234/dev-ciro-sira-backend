@@ -1,5 +1,6 @@
 import { Request } from "express";
 import { MulterError } from "multer";
+import { logger } from "../utils/logger";
 
 export const errorHandler = (
   error: any,
@@ -7,8 +8,8 @@ export const errorHandler = (
   res: any
   /* next: NextFunction */
 ) => {
-  console.log(error);
-  console.error(error.message);
+  logger.error(error);
+  logger.error(error.message);
   if (error instanceof MulterError) {
     res.status(error.code).json({ error: error.message });
   } else if (error.name === "CastError") {

@@ -1,6 +1,7 @@
 import multer from "multer";
 
 import { FIELDSIZE, MIMETYPES } from "../config/constants";
+import { logger } from "../utils/logger";
 
 /* const diskStorage = multer.diskStorage({
   destination: "uploads/",
@@ -18,7 +19,7 @@ const memoryStorage = multer.memoryStorage();
 export const multerUpload = multer({
   storage: memoryStorage,
   fileFilter: (rep, file, cb) => {
-    console.log(file);
+    logger.info(file);
     if (MIMETYPES.some((filetype) => filetype === file.mimetype)) {
       return cb(null, true);
     } else {

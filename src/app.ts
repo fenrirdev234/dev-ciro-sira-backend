@@ -14,6 +14,8 @@ import {
   CLOUDINARY_CLOUD_NAME,
 } from "./utils/secret";
 import { v1PostRouter } from "./v1/routes/postRouters";
+import { logger } from "./utils/logger";
+import { morganMiddleware } from "./middlewares/morganMiddleware";
 
 export const app = express();
 
@@ -23,6 +25,7 @@ dbInit();
 // Global Middleware
 app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use(morgan("tiny"));
+app.use(morganMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(rateLimiter);
