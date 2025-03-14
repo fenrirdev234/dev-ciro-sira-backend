@@ -1,23 +1,21 @@
 import { v2 as cloudinary } from "cloudinary";
-
-import express from "express";
 import cors from "cors";
-import swaggerUI from "swagger-ui-express";
-
+import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
 
-import { v1PostRouter } from "./v1/routes/postRouters";
-import { unknownEndpoint } from "./middlewares/unknownEndpoint";
+import dbInit from "./database/mongo";
 import { errorHandler } from "./middlewares/errorHandle";
 import { rateLimiter } from "./middlewares/rateLimit";
-import dbInit from "./database/mongo";
-
+import { unknownEndpoint } from "./middlewares/unknownEndpoint";
 import {
   CLOUDINARY_API_KEY,
   CLOUDINARY_API_SECRET,
   CLOUDINARY_CLOUD_NAME,
 } from "./utils/secret";
+import { v1PostRouter } from "./v1/routes/postRouters";
+import { logger } from "./utils/logger";
+import { morganMiddleware } from "./middlewares/morganMiddleware";
 
 export const app = express();
 
@@ -27,6 +25,7 @@ dbInit();
 // Global Middleware
 app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use(morgan("tiny"));
+app.use(morganMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(rateLimiter);

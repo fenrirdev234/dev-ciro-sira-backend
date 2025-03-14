@@ -1,8 +1,9 @@
 import multer from "multer";
-import { FIELDSIZE, MIMETYPES } from "../config/constants";
-import { extname } from "path";
 
-const diskStorage = multer.diskStorage({
+import { FIELDSIZE, MIMETYPES } from "../config/constants";
+import { logger } from "../utils/logger";
+
+/* const diskStorage = multer.diskStorage({
   destination: "uploads/",
   filename: (req, file, cb) => {
     const fileExtention = extname(file.originalname);
@@ -11,14 +12,14 @@ const diskStorage = multer.diskStorage({
     );
     cb(null, `${fileName}-${Date.now()}${fileExtention}`);
   },
-});
+}); */
 
 const memoryStorage = multer.memoryStorage();
 
 export const multerUpload = multer({
   storage: memoryStorage,
   fileFilter: (rep, file, cb) => {
-    console.log(file);
+    logger.info(file);
     if (MIMETYPES.some((filetype) => filetype === file.mimetype)) {
       return cb(null, true);
     } else {

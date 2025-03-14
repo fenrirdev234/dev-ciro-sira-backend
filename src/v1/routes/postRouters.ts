@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { multerUpload } from "../../middlewares/multerUpload";
+
 import {
   createPostsController,
   getAllPostsController,
   getOnePostsController,
 } from "../../controllers/postController";
+import { multerUpload } from "../../middlewares/multerUpload";
 import { schemaValition } from "../../middlewares/schemaValidator";
-
 import {
   CreatePostSchema,
   GetAllPostSchema,

@@ -1,7 +1,6 @@
-import { z } from "zod";
-
-import fs from "fs";
 import dotenv from "dotenv";
+import fs from "fs";
+import { z } from "zod";
 
 if (fs.existsSync(".env")) {
   dotenv.config({ path: ".env" });
@@ -48,14 +47,14 @@ const MONGO_DATABASE =
   NODE_ENV === "test" ? MONGO_DATABASE_TEST : data.MONGO_DATABASE;
 
 export {
-  PORT,
-  NODE_ENV,
-  MONGO_USER,
-  MONGO_PASSWORD,
-  MONGO_HOSTNAME,
-  MONGO_NAMEAPP,
-  MONGO_DATABASE,
-  CLOUDINARY_CLOUD_NAME,
   CLOUDINARY_API_KEY,
   CLOUDINARY_API_SECRET,
+  CLOUDINARY_CLOUD_NAME,
+  MONGO_DATABASE,
+  MONGO_HOSTNAME,
+  MONGO_NAMEAPP,
+  MONGO_PASSWORD,
+  MONGO_USER,
+  NODE_ENV,
+  PORT,
 };

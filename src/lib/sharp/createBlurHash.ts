@@ -1,5 +1,5 @@
-import sharp from "sharp";
 import { encode } from "blurhash";
+import sharp from "sharp";
 
 export const createBlurHash = async (imageArray: Uint8Array) => {
   const sharpImage = sharp(imageArray);

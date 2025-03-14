@@ -1,4 +1,4 @@
-import mongoose, { InferSchemaType, Schema } from "mongoose";
+import mongoose, { InferSchemaType } from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
 import { z } from "zod";
 
@@ -94,13 +94,13 @@ export const GetOnePostSchema = z.object({
   }),
 });
 
-const categoryTypesSchema = z.enum([
+/* const categoryTypesSchema = z.enum([
   "DIVERSITY",
   "COMPANY",
   "CRYPTO",
   "GLOBAL",
   "LEAK",
-]);
+]); */
 export const CreatePostSchema = z.object({
   body: z.object({
     title: z
