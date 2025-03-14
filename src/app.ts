@@ -24,7 +24,6 @@ dbInit();
 
 // Global Middleware
 app.use(helmet({ crossOriginResourcePolicy: false }));
-app.use(morgan("tiny"));
 app.use(morganMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
