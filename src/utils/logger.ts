@@ -1,4 +1,5 @@
 import winston from "winston";
+
 import { NODE_ENV } from "./secret";
 
 const levels = {
@@ -29,9 +30,7 @@ const format = winston.format.combine(
   winston.format.timestamp({ format: "YYYY-MM-DD hh:mm:ss.SSS A" }),
   winston.format.colorize({ all: true }),
   winston.format.align(),
-  winston.format.printf(
-    (info) => `[${info.timestamp}] ${info.level}: ${info.message}`
-  )
+  winston.format.printf((info) => `[${info.timestamp}] ${info.level}: ${info.message}`),
 );
 
 const transports = [

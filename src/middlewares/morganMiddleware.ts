@@ -1,4 +1,5 @@
 import morgan from "morgan";
+
 import { logger } from "../utils/logger";
 import { NODE_ENV } from "../utils/secret";
 
@@ -18,5 +19,5 @@ export const morganMiddleware = morgan(
   ":remote-addr :method :url :status :res[content-length] - :response-time ms",
   // Options: in this case, I overwrote the stream and the skip logic.
   // See the methods above.
-  { stream, skip }
+  { stream, skip },
 );

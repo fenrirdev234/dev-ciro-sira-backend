@@ -1,11 +1,12 @@
 import { Request } from "express";
 import { MulterError } from "multer";
+
 import { logger } from "../utils/logger";
 
 export const errorHandler = (
   error: any,
   req: Request,
-  res: any
+  res: any,
   /* next: NextFunction */
 ) => {
   logger.error(error);

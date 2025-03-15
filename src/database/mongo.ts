@@ -1,14 +1,7 @@
 import { connect } from "mongoose";
 
-import {
-  MONGO_DATABASE,
-  MONGO_HOSTNAME,
-  MONGO_NAMEAPP,
-  MONGO_PASSWORD,
-  MONGO_USER,
-  NODE_ENV,
-} from "../utils/secret";
 import { logger } from "../utils/logger";
+import { MONGO_DATABASE, MONGO_HOSTNAME, MONGO_NAMEAPP, MONGO_PASSWORD, MONGO_USER, NODE_ENV } from "../utils/secret";
 
 const MONGO_URI =
   NODE_ENV === "production"

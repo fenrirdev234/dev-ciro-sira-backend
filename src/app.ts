@@ -2,20 +2,14 @@ import { v2 as cloudinary } from "cloudinary";
 import cors from "cors";
 import express from "express";
 import helmet from "helmet";
-import morgan from "morgan";
 
 import dbInit from "./database/mongo";
 import { errorHandler } from "./middlewares/errorHandle";
+import { morganMiddleware } from "./middlewares/morganMiddleware";
 import { rateLimiter } from "./middlewares/rateLimit";
 import { unknownEndpoint } from "./middlewares/unknownEndpoint";
-import {
-  CLOUDINARY_API_KEY,
-  CLOUDINARY_API_SECRET,
-  CLOUDINARY_CLOUD_NAME,
-} from "./utils/secret";
+import { CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET, CLOUDINARY_CLOUD_NAME } from "./utils/secret";
 import { v1PostRouter } from "./v1/routes/postRouters";
-import { logger } from "./utils/logger";
-import { morganMiddleware } from "./middlewares/morganMiddleware";
 
 export const app = express();
 
@@ -34,7 +28,7 @@ app.use(
     methods: "GET, POST",
     preflightContinue: false,
     optionsSuccessStatus: 204,
-  })
+  }),
 );
 /* app.use('/docs', swaggerUI.serve, async (_req: express.Request, res: express.Response) => {
   return res.send(swaggerUI.generateHTML(await import('./swagger/')));
