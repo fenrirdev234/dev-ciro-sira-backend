@@ -6,13 +6,29 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-.env
 
-node_modules
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+
+# Dependencies
+/node_modules
+
+# TypeScript build output
 dist
 dist-ssr
 build
 *.local
+
+# OS generated files
+.DS_Store
+
+# Test coverage
+/coverage
+
 
 uploads/**
 !.gitkeep
