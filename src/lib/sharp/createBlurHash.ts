@@ -8,13 +8,7 @@ export const createBlurHash = async (imageArray: Uint8Array) => {
     resolveWithObject: true,
   });
 
-  const encoded = encode(
-    new Uint8ClampedArray(data),
-    info.width,
-    info.height,
-    4,
-    4
-  );
+  const encoded = encode(new Uint8ClampedArray(data), info.width, info.height, 4, 4);
 
   return {
     hash: encoded,

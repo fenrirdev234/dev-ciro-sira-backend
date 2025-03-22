@@ -1,5 +1,6 @@
 import pluginJs from "@eslint/js";
 import vitest from "@vitest/eslint-plugin";
+import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import globals from "globals";
 import tseslint from "typescript-eslint";
@@ -7,7 +8,7 @@ import tseslint from "typescript-eslint";
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   {
-    files: ["**/*.{js,mjs,cjs,ts}"],
+    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
 
     plugins: {
       "simple-import-sort": simpleImportSort,
@@ -26,6 +27,7 @@ export default [
       }, */
     },
   },
+  eslintPluginPrettier,
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   {
