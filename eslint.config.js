@@ -1,6 +1,7 @@
 import pluginJs from "@eslint/js";
 import vitest from "@vitest/eslint-plugin";
 import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
+import pluginSecurity from "eslint-plugin-security";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import globals from "globals";
 import tseslint from "typescript-eslint";
@@ -29,6 +30,7 @@ export default [
   },
   eslintPluginPrettier,
   pluginJs.configs.recommended,
+  pluginSecurity.configs.recommended,
   ...tseslint.configs.recommended,
   {
     rules: {
