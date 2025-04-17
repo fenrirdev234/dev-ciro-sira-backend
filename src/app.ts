@@ -9,6 +9,8 @@ import { morganMiddleware } from "./middlewares/morganMiddleware";
 import { rateLimiter } from "./middlewares/rateLimit";
 import { unknownEndpoint } from "./middlewares/unknownEndpoint";
 import { CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET, CLOUDINARY_CLOUD_NAME } from "./utils/secret";
+import { v1AccountRouter } from "./v1/routes/accountRouters";
+import { v1AuthRouter } from "./v1/routes/authRouters";
 import { v1PostRouter } from "./v1/routes/postRouters";
 
 export const app = express();
@@ -47,6 +49,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/posts", v1PostRouter);
+app.use("/api/v1/auth", v1AuthRouter);
+app.use("/api/v1/account", v1AccountRouter);
 
 // unknownEndpoint and errorHandler  Middleware
 app.use(unknownEndpoint);
