@@ -2,21 +2,47 @@ import mongoose, { InferSchemaType } from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
 import { z } from "zod";
 
-export const postSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-    minlength: [3, "Title must be at least 3 characters long"],
-    maxlength: [128, "Title must be less than 128 characters long"],
-  },
-  author: {
-    name: {
+export const postSchema = new mongoose.Schema(
+  {
+    title: {
       type: String,
       required: true,
-      minlength: [3, "Author must be at least 3 characters long"],
-      maxlength: [128, "Author must be less than 128 characters long"],
+      minlength: [3, "Title must be at least 3 characters long"],
+      maxlength: [128, "Title must be less than 128 characters long"],
     },
-    photo: {
+    author: {
+      name: {
+        type: String,
+        required: true,
+        minlength: [3, "Author must be at least 3 characters long"],
+        maxlength: [128, "Author must be less than 128 characters long"],
+      },
+      photo: {
+        url: {
+          type: String,
+          required: true,
+        },
+        alt: {
+          type: String,
+          required: true,
+        },
+      },
+    },
+    readingTime: {
+      type: String,
+      required: true,
+    },
+
+    category: {
+      type: String,
+      required: true,
+    },
+    postId: {
+      type: mongoose.Schema.Types.ObjectId,
+
+      required: true,
+    },
+    postImage: {
       url: {
         type: String,
         required: true,
@@ -25,35 +51,7 @@ export const postSchema = new mongoose.Schema({
         type: String,
         required: true,
       },
-    },
-  },
-  readingTime: {
-    type: String,
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  category: {
-    type: String,
-    required: true,
-  },
-  postId: {
-    type: mongoose.Schema.Types.ObjectId,
-
-    required: true,
-  },
-  postImage: {
-    url: {
-      type: String,
-      required: true,
-    },
-    alt: {
-      type: String,
-      required: true,
-    },
-    /*   blurHash: {
+      /*   blurHash: {
       hash: {
         type: String,
         required: true,
@@ -67,8 +65,10 @@ export const postSchema = new mongoose.Schema({
         required: true,
       },
     }, */
+    },
   },
-});
+  { timestamps: true },
+);
 
 postSchema.plugin(mongoosePaginate);
 
@@ -103,11 +103,7 @@ export const GetOnePostSchema = z.object({
 ]); */
 export const CreatePostSchema = z.object({
   body: z.object({
-    title: z
-      .string()
-      .nonempty()
-      .min(3, "Title must be at least 3 characters long")
-      .max(128, "Title must be less than 128 characters long"),
+    title: z.string().nonempty().min(3, "Title must be at least 3 characters long").max(128, "Title must be less than 128 characters long"),
 
     authorName: z
       .string()

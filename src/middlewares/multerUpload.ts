@@ -23,9 +23,7 @@ export const multerUpload = multer({
     if (MIMETYPES.some((filetype) => filetype === file.mimetype)) {
       return cb(null, true);
     } else {
-      return cb(
-        new Error(`Only ${MIMETYPES.join(", ")} mimetypes are allowed`)
-      );
+      return cb(new Error(`Only ${MIMETYPES.join(", ")} mimetypes are allowed`));
     }
   },
   limits: { fieldSize: FIELDSIZE },

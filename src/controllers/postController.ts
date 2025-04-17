@@ -1,22 +1,10 @@
 import { v2 as cloudinary } from "cloudinary";
 import type { NextFunction, Request, Response } from "express";
 
-import {
-  CreatePostBodyType,
-  GetAllPostQueryType,
-  GetOnePostParamsType,
-} from "../schemas/postSchema";
-import {
-  createPostService,
-  getAllPostService,
-  getOnePostService,
-} from "../services/PostServices";
+import { CreatePostBodyType, GetAllPostQueryType, GetOnePostParamsType } from "../schemas/postSchema";
+import { createPostService, getAllPostService, getOnePostService } from "../services/PostServices";
 
-const getAllPostsController = async (
-  req: Request<unknown, unknown, unknown, GetAllPostQueryType>,
-  res: Response,
-  next: NextFunction
-) => {
+const getAllPostsController = async (req: Request<unknown, unknown, unknown, GetAllPostQueryType>, res: Response, next: NextFunction) => {
   try {
     const { limit, page, isDesc } = req.query;
 
@@ -32,11 +20,7 @@ const getAllPostsController = async (
   }
 };
 
-const getOnePostsController = async (
-  req: Request<GetOnePostParamsType>,
-  res: Response,
-  next: NextFunction
-) => {
+const getOnePostsController = async (req: Request<GetOnePostParamsType>, res: Response, next: NextFunction) => {
   try {
     const postId = req.params.postId;
 
@@ -47,20 +31,9 @@ const getOnePostsController = async (
   }
 };
 
-const createPostsController = async (
-  req: Request<unknown, unknown, CreatePostBodyType>,
-  res: Response,
-  next: NextFunction
-) => {
+const createPostsController = async (req: Request<unknown, unknown, CreatePostBodyType>, res: Response, next: NextFunction) => {
   try {
-    const {
-      title,
-      authorPhotoUrl,
-      authorName,
-      category,
-      readingTime,
-      postImageDescription,
-    } = req.body;
+    const { title, authorPhotoUrl, authorName, category, readingTime, postImageDescription } = req.body;
 
     const image = req.file;
     /*  const processedImage = sharp(image?.buffer);
@@ -82,7 +55,7 @@ const createPostsController = async (
               reject(err);
             }
             resolve(result);
-          }
+          },
         )
         .end(image?.buffer);
     });
