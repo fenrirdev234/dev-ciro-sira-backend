@@ -8,6 +8,7 @@ export class APIError extends Error {
     this.title = title;
     this.message = message;
   }
+
   toJSON() {
     const { status, title, message } = this;
     return {
