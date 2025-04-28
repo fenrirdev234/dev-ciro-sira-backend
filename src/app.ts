@@ -18,7 +18,12 @@ export const app = express();
 // Database Connection
 dbInit();
 
+// Useful if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
+// It shows the real origin IP in the heroku or Cloudwatch logs
+/* app.enable("trust proxy"); */
+
 // Global Middleware
+
 app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use(morganMiddleware);
 app.use(express.json());
