@@ -1,4 +1,4 @@
-import { connect } from "mongoose";
+import { connect, disconnect } from "mongoose";
 
 import { logger } from "../utils/logger";
 import { MONGO_DATABASE, MONGO_HOSTNAME, MONGO_NAMEAPP, MONGO_PASSWORD, MONGO_USER, NODE_ENV } from "../utils/secret";
@@ -22,5 +22,9 @@ const dbInit = () => {
       process.exit(1);
     });
 };
+
+process.on("uncaughtException", () => {
+  disconnect();
+});
 
 export default dbInit;
