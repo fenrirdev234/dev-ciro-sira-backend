@@ -3,7 +3,7 @@ import { Router } from "express";
 import { createPostsController, getAllPostsController, getOnePostsController } from "../../controllers/postController";
 import { multerUpload } from "../../middlewares/multerUpload";
 import { schemaValition } from "../../middlewares/schemaValidator";
-import { CreatePostSchema, GetAllPostSchema, GetOnePostSchema } from "../../schemas/postSchema";
+import { CreatePostSchema, GetAllPostSchema, GetOnePostSchema } from "../../schemas/postSchema.validation";
 export const v1PostRouter = Router();
 
 v1PostRouter.get("/", schemaValition(GetAllPostSchema), getAllPostsController);

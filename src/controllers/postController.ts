@@ -1,7 +1,7 @@
 import { v2 as cloudinary } from "cloudinary";
 import type { NextFunction, Request, Response } from "express";
 
-import { CreatePostBodyType, GetAllPostQueryType, GetOnePostParamsType } from "../schemas/postSchema";
+import { CreatePostBodyType, GetAllPostQueryType, GetOnePostParamsType } from "../schemas/postSchema.validation";
 import { createPostService, getAllPostService, getOnePostService } from "../services/PostServices";
 
 const getAllPostsController = async (req: Request<unknown, unknown, unknown, GetAllPostQueryType>, res: Response, next: NextFunction) => {
