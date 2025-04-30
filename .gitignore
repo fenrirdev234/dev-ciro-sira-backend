@@ -43,3 +43,8 @@ uploads/**
 *.njsproj
 *.sln
 *.sw?
+k6-results
+.nyc_output
+.npm
+.tmp
+.idea
