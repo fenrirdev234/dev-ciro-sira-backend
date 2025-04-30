@@ -1,5 +1,5 @@
 {
-  "**/*.{ts?(x),mts}": ["tsc   --noEmit"],
+  "**/*.{ts?(x),mts}": ["bash -c tsc --noEmit"],
   "*.{js,jsx,mjs,cjs,ts,tsx,mts,cts}": ["npm run lint:file", "prettier --check", "vitest related --run"],
   "*.{json,md}": ["prettier --check"]
 }
