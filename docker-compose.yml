@@ -6,14 +6,7 @@ services:
     ports:
       - "27018:27017"
     healthcheck:
-      test:
-        [
-          "CMD",
-          "mongosh",
-          "--eval",
-          "rs.initiate().ok || rs.status().ok",
-          "--quiet",
-        ]
+      test: ["CMD", "mongosh", "--eval", "rs.initiate().ok || rs.status().ok", "--quiet"]
       interval: 5s
       timeout: 30s
       start_period: 0s
