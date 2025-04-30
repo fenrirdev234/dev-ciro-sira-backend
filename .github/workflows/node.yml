@@ -3,6 +3,7 @@ name: "🐢 Node"
 on:
   push:
 # TODO: change the version of node and npm run to node --run
+# TODO: add action to dead process
 jobs:
   quality-checks:
     runs-on: ubuntu-latest
