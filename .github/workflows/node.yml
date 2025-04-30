@@ -1,0 +1,50 @@
+name: "🐢 Node"
+
+on:
+  push:
+
+jobs:
+  quality-checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code 🛬
+        uses: actions/checkout@v4
+
+      - name: Cache dependencies ⌛️
+        id: cache-node_modules
+        uses: actions/cache@v4
+        with:
+          path: "node_modules"
+          key: ${{ runner.os }}-npm-${{ hashFiles('package*.json') }}-node_modules-${{ hashFiles('.github/workflows/node/yml') }}
+
+      - name: Setup Node.js ⚙️
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "npm"
+
+      - name: Install dependencies 📥
+        if: steps.cache-node_modules.outputs.cache-hit != "true"
+        run: npm ci
+
+      - name: Run TypeScript type checking
+        run: npm run type-check
+
+      - name: Run ESLint and fix 💅
+        run: npm run lint:fix
+
+      - name: Format with Prettier
+        run: npm run format
+
+      - name: Check for remaining ESLint errors
+        run: npm run lint
+
+      - name: Check for remaining formatting issues
+        run: npm run format:check
+
+      #      - name: Build TypeScript 📦
+      #        run: npm run build && find dist/index.js
+
+      - name: Run tests ✅
+        run: npm run test
