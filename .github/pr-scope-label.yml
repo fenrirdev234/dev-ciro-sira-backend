@@ -1,0 +1,68 @@
+💻 Source:
+  - changed-files:
+      - any-glob-to-any-file:
+          - src/**
+
+🧪 Tests:
+  - changed-files:
+      - any-glob-to-any-file:
+          - tests/**
+          - vitest.config.**.ts
+          - .env.test
+
+📝 Documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - docs/**
+          - README.md
+          - images/**
+
+🐳 Build:
+  - changed-files:
+      - any-glob-to-any-file:
+          - .dockerignore
+          - Dockerfile
+          - docker-compose.yml
+          - .nvmrc
+          - .swcrc
+          - tsconfig.json
+          - tsconfig.prod.json
+          - tsconfig.build.json
+
+⚙️ Configuration:
+  - changed-files:
+      - any-glob-to-any-file:
+          - .dockerignore
+          - .editorconfig
+          - .env.example
+          - eslint.config.js
+          - .gitignore
+          - .nvmrc
+          - .prettierignore
+          - .swcrc
+          - .commitlintrc.json
+          - vitest.config.ts
+          - .env.test
+          - .lintstagedrc
+          - .prettierrc
+          - tsconfig.json
+          - tsconfig.prod.json
+          - tsconfig.build.json
+
+📦 Dependencies:
+  - changed-files:
+      - any-glob-to-any-file:
+          - package.json
+          - package-lock.json
+
+🚀 CI/CD:
+  - changed-files:
+      - any-glob-to-any-file:
+          - .github/workflows/**
+          - .github/pr-scope-labeler.yml
+          - .husky/**
+
+🏠 Github Configuration:
+  - changed-files:
+      - any-glob-to-any-file:
+          - .github/labels.yml
