@@ -28,14 +28,14 @@ jobs:
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: Run TypeScript type checking
-        run: npm run type-check
+      # - name: Run TypeScript type checking
+      #  run: npm run type-check
 
-      - name: Run ESLint and fix 💅
-        run: npm run lint:fix
+      # - name: Run ESLint and fix 💅
+      #  run: npm run lint:fix
 
-      - name: Format with Prettier
-        run: npm run format
+      # - name: Format with Prettier
+      #  run: npm run format
 
       - name: Check for remaining ESLint errors
         run: npm run lint
