@@ -16,7 +16,7 @@ export default [
     },
   },
   {
-    ignores: ["dist", "node_modules", "build", "package.json", "package-lock.json", "public", ".husky"],
+    ignores: ["dist", "coverage", "node_modules", "build", "package.json", "package-lock.json", "public", ".husky"],
   },
   {
     languageOptions: {
