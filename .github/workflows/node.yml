@@ -27,7 +27,7 @@ jobs:
 
       - name: Install dependencies 📥
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: npm ci --no-audit
+        run: npm ci --no-audit --no-fund
 
       # - name: Run TypeScript type checking
       #  run: npm run type-check
