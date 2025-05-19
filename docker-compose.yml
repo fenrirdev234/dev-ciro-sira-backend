@@ -1,4 +1,26 @@
 services:
+  my-service-production:
+    container_name: my-service-production
+    build:
+      context: .
+      target: production
+    ports:
+      - "3001:3001"
+  my-service-dev:
+    container_name: my-service-dev
+    restart: unless-stopped
+    build:
+      context: .
+      target: dev
+      args:
+        - PORT=${PORT}
+    ports:
+      - "${PORT}:${PORT}"
+    env_file:
+      - .env
+    volumes:
+      - ./src:/app/src
+
   momgodb:
     image: mongo
     hostname: mongodb

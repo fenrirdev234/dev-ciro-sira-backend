@@ -1,9 +1,6 @@
-node_modules
-logs
-dist
-uploads
-.vscode
-.husky
-.huskyExample
-.github
-.githubExample
+*
+!/package.json
+!/package-lock.json
+!/tsconfig.build.json
+!/tsconfig.json
+!/src
