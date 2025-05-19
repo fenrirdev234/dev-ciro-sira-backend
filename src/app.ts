@@ -53,6 +53,9 @@ cloudinary.config({
 app.get("/", (req, res) => {
   res.status(200).send("API is running");
 });
+app.get("/health", (req, res) => {
+  res.status(200).send("ok");
+});
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpecs));
 
 app.use("/api/v1/posts", v1PostRouter);
