@@ -66,7 +66,7 @@ export const postSchema = new Schema(
     }, */
     },
   },
-  { timestamps: true },
+  { timestamps: true, versionKey: false },
 );
 
 postSchema.plugin(mongoosePaginate);
@@ -75,7 +75,6 @@ postSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     returnedObject.postId = returnedObject.postId.toString();
     delete returnedObject._id;
-    delete returnedObject.__v;
   },
 });
 
