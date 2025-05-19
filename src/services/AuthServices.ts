@@ -1,12 +1,13 @@
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 
-import { AuthModel } from "../models/authModel";
-import { loginServicesTypes, registerServicesTypes } from "../schemas/authSchema";
-import { JWT_PRIVATE_KEY, SALT_ROUNDS } from "../utils/secret";
+import { createAccessToken } from "../lib/jwt";
+import { UserModel } from "../models/userModel";
+import { loginServicesTypes, registerServicesTypes } from "../schemas/userSchema";
+import { SALT_ROUNDS } from "../utils/secret";
 
+/* TODO: change auth token to cookies */
 export const registerService = async ({ email, password, userName }: registerServicesTypes) => {
-  const userIsRegistrated = await AuthModel.findOne({ email });
+  const userIsRegistrated = await UserModel.findOne({ email });
 
   if (userIsRegistrated) {
     throw new Error("Account already exists");
@@ -14,13 +15,15 @@ export const registerService = async ({ email, password, userName }: registerSer
 
   const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
 
-  const userCreated = await AuthModel.create({ email, password: hashedPassword, userName });
+  const userCreated = await UserModel.create({ email, password: hashedPassword, userName });
 
-  return { userName: userCreated.userName, email: userCreated.email };
+  const token = await createAccessToken({ id: userCreated.id });
+
+  return { token };
 };
 
 export const loginServices = async ({ email, password }: loginServicesTypes) => {
-  const user = await AuthModel.findOne({ email });
+  const user = await UserModel.findOne({ email });
 
   if (!user) {
     throw new Error("Account no exists");
@@ -32,9 +35,7 @@ export const loginServices = async ({ email, password }: loginServicesTypes) => 
     throw new Error("Error password");
   }
 
-  const token = jwt.sign({ userName: user.userName, role: user.role }, JWT_PRIVATE_KEY, {
-    expiresIn: "1h",
-  });
+  const token = await createAccessToken({ id: user.id });
 
   return { token };
 };
