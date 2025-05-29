@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-// TODO: username and password validator
 export const usernameValidation = z
   .string()
   .min(6, { message: "Username must be at least 6 char longs" })

@@ -1,4 +1,3 @@
-import { isBoom } from "@hapi/boom";
 import { Request } from "express";
 import { MulterError } from "multer";
 
@@ -13,16 +12,17 @@ export const errorHandler = (
 ) => {
   logger.error(error);
   logger.error(error.message);
-  if (error instanceof MulterError) {
+  if (error instanceof APIError) {
+    res.status(error.status).json(error);
+  } else if (error instanceof MulterError) {
     const errorFormmater = new APIError(400, error.name, error.message);
     res.status(400).json(errorFormmater);
-  } else if (isBoom(error)) {
-    const errorFormmater = new APIError(error.output.payload.statusCode, error.output.payload.error, error.output.payload.message);
-    res.status(errorFormmater.status).json(errorFormmater);
   } else if (error.name === "CastError") {
-    return res.status(400).send({ error: "malformatted id" });
+    const errorFormmater = new APIError(400, error.name, "malformatted id");
+    return res.status(errorFormmater.status).send(errorFormmater);
   } else if (error.name === "ValidationError") {
-    return res.status(400).json({ error: error.message });
+    const errorFormmater = new APIError(400, error.name, "Validation Error");
+    return res.status(errorFormmater.status).json(errorFormmater);
   } else {
     // send generic error message
     return res.status(500).json({
